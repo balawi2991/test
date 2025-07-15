@@ -11,6 +11,7 @@ interface GlowEffectProps {
  * GlowEffect
  * Animated conic gradient glow, persistent in both minimized and expanded states.
  * Uses CSS keyframes for rotation and blur. Optimized for GPU acceleration and cross-browser compatibility.
+ * Includes FPS monitoring for performance validation.
  */
 export default function GlowEffect({ expanded }: GlowEffectProps) {
   // Custom CSS for conic gradient and animation
@@ -60,6 +61,32 @@ export default function GlowEffect({ expanded }: GlowEffectProps) {
         document.head.removeChild(styleRef.current);
         styleRef.current = null;
       }
+    };
+  }, []);
+
+  // Performance monitoring: measure frames per second for the glow animation
+  useEffect(() => {
+    let lastFrameTime = performance.now();
+    let frameCount = 0;
+    let animating = true;
+
+    function measureFPS() {
+      const now = performance.now();
+      frameCount++;
+      if (now - lastFrameTime >= 1000) {
+        console.log(`[GlowEffect] FPS: ${frameCount}`);
+        frameCount = 0;
+        lastFrameTime = now;
+      }
+      if (animating) {
+        requestAnimationFrame(measureFPS);
+      }
+    }
+
+    requestAnimationFrame(measureFPS);
+
+    return () => {
+      animating = false;
     };
   }, []);
 
