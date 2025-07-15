@@ -10,7 +10,7 @@ interface GlowEffectProps {
 /**
  * GlowEffect
  * Animated conic gradient glow, persistent in both minimized and expanded states.
- * Uses CSS keyframes for rotation and blur.
+ * Uses CSS keyframes for rotation and blur. Optimized for GPU acceleration and cross-browser compatibility.
  */
 export default function GlowEffect({ expanded }: GlowEffectProps) {
   // Custom CSS for conic gradient and animation
@@ -22,10 +22,16 @@ export default function GlowEffect({ expanded }: GlowEffectProps) {
     if (styleRef.current) return;
     const style = document.createElement("style");
     style.innerHTML = `
-      @keyframes glow-rotate {
-        from { transform: rotate(0deg);}
-        to { transform: rotate(360deg);}
+      /* Vendor-prefixed keyframes for cross-browser compatibility */
+      @-webkit-keyframes glow-rotate {
+        from { transform: rotate(0deg) translateZ(0); }
+        to { transform: rotate(360deg) translateZ(0); }
       }
+      @keyframes glow-rotate {
+        from { transform: rotate(0deg) translateZ(0); }
+        to { transform: rotate(360deg) translateZ(0); }
+      }
+
       .glow-effect-conic::before {
         content: '';
         position: absolute;
@@ -33,9 +39,18 @@ export default function GlowEffect({ expanded }: GlowEffectProps) {
         top: -50%;
         width: 200%;
         height: 200%;
+        /* Conic gradient with vendor prefix fallback */
+        background: -webkit-conic-gradient(from 180deg at 50% 50%, #fbbf24, #f472b6, #a78bfa, #fbbf24);
         background: conic-gradient(from 180deg at 50% 50%, #fbbf24, #f472b6, #a78bfa, #fbbf24);
-        animation: glow-rotate 4s linear infinite;
         z-index: -1;
+        /* Enable GPU acceleration */
+        transform: translateZ(0);
+        will-change: transform;
+        /* Animation with vendor prefixes */
+        -webkit-animation: glow-rotate 4s linear infinite;
+        -moz-animation: glow-rotate 4s linear infinite;
+        -o-animation: glow-rotate 4s linear infinite;
+        animation: glow-rotate 4s linear infinite;
       }
     `;
     document.head.appendChild(style);
