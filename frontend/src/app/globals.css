@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Tajawal font for Arabic UI (fallback to Google Fonts if local not available) */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -20,6 +23,40 @@
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* RTL support for the whole app */
+html[dir="rtl"] {
+  direction: rtl;
+  unicode-bidi: embed;
+}
+
+/* Tajawal font for all text */
+body, html {
+  font-family: 'Tajawal', var(--font-tajawal), sans-serif;
+  background-color: #F8F9FA;
+  color: #343A40;
+}
+
+/* Custom scrollbar for chat history */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #c4c4c4;
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Framer Motion disables pointer-events on exit, so we ensure pointer-events are correct */
+[aria-modal="true"] {
+  pointer-events: auto !important;
 }
 
 @layer base {
