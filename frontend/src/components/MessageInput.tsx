@@ -54,6 +54,8 @@ export default function MessageInput({
           type="text"
           placeholder="اكتب رسالتك..."
           maxLength={500}
+          inputMode="text"
+          enterKeyHint="send"
           className="flex-grow w-full px-2 md:px-4 py-2 bg-gray-100 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#007BFF] transition-shadow text-sm md:text-base"
           value={input}
           onChange={e => setInput(e.target.value)}
@@ -65,7 +67,7 @@ export default function MessageInput({
         />
         <button
           type="submit"
-          className="w-10 h-10 bg-[#28A745] text-white rounded-full flex items-center justify-center flex-shrink-0 hover:bg-green-600 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
+          className="w-11 h-11 bg-[#28A745] text-white rounded-full flex items-center justify-center flex-shrink-0 hover:bg-green-600 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
           disabled={disabled || !input.trim()}
           aria-label="إرسال الرسالة"
         >
