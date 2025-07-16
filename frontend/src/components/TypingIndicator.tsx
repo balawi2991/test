@@ -41,8 +41,8 @@ export default function TypingIndicator({ visible }: TypingIndicatorProps) {
   }
 
   return (
-    <div className="p-4 flex items-center justify-center">
-      <div className="bg-gray-200 rounded-lg p-2 flex space-x-1">
+    <div className="p-2 md:p-4 flex items-center justify-center">
+      <div className="bg-gray-200 rounded-lg p-1 md:p-2 flex space-x-1">
         <div className="typing-dot w-2 h-2 bg-gray-500 rounded-full"></div>
         <div className="typing-dot w-2 h-2 bg-gray-500 rounded-full"></div>
         <div className="typing-dot w-2 h-2 bg-gray-500 rounded-full"></div>
