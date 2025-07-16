@@ -15,7 +15,7 @@ export default function MinimizedChatBar({ onExpand }: MinimizedChatBarProps) {
   return (
     <div
       className={cn(
-        "w-[280px] md:w-[320px] h-14 bg-white/80 backdrop-blur-sm rounded-full shadow-2xl cursor-pointer flex items-center px-4 transition-all duration-300 ease-in-out overflow-hidden"
+        "w-[280px] md:w-[300px] lg:w-[320px] h-14 bg-white/80 backdrop-blur-sm rounded-full shadow-2xl cursor-pointer flex items-center px-4 transition-all duration-300 ease-in-out overflow-hidden"
       )}
       tabIndex={0}
       role="button"
