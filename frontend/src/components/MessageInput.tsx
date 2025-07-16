@@ -1,6 +1,6 @@
 "use client";
 
-import { RefObject } from "react";
+import { RefObject, useCallback } from "react";
 
 interface MessageInputProps {
   input: string;
@@ -21,17 +21,34 @@ export default function MessageInput({
   inputRef,
   disabled,
 }: MessageInputProps) {
-  // Prevent empty or whitespace-only messages
+  // Prevent empty or whitespace-only messages on form submit
   const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
-    if (input.trim() && !disabled) {
+    const trimmed = input.trim();
+    if (trimmed && !disabled) {
       onSend();
     }
   };
 
+  // Handle Enter key press to send message
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      const trimmed = input.trim();
+      if (e.key === "Enter" && !disabled && trimmed) {
+        e.preventDefault();
+        onSend();
+      }
+    },
+    [input, disabled, onSend]
+  );
+
   return (
     <div className="p-4 bg-white border-t border-gray-200 flex-shrink-0">
-      <form className="flex items-center gap-2" onSubmit={handleSend} autoComplete="off">
+      <form
+        className="flex items-center gap-2"
+        onSubmit={handleSend}
+        autoComplete="off"
+      >
         <input
           ref={inputRef}
           type="text"
@@ -39,7 +56,8 @@ export default function MessageInput({
           maxLength={500}
           className="flex-grow w-full px-4 py-2 bg-gray-100 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#007BFF] transition-shadow"
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
           disabled={disabled}
           autoFocus={false}
           autoComplete="off"
