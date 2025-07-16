@@ -24,12 +24,12 @@ export default function MinimizedChatBar({ onExpand }: MinimizedChatBarProps) {
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") onExpand();
       }}
+      onTouchStart={onExpand}
     >
       <p className="text-gray-500 flex-grow text-right px-2 select-none">
-        {/* Placeholder: replace with localized string if needed */}
         ابدأ محادثة مع المساعد الذكي...
       </p>
-      <div className="w-10 h-10 bg-[#007BFF] rounded-full flex items-center justify-center flex-shrink-0">
+      <div className="w-11 h-11 bg-[#007BFF] rounded-full flex items-center justify-center flex-shrink-0">
         {/* Chat icon (SVG) */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
