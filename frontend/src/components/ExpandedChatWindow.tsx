@@ -40,7 +40,7 @@ export default function ExpandedChatWindow({
 }: ExpandedChatWindowProps) {
   return (
     <div
-      className="w-[calc(100vw-2rem)] max-w-[400px] h-[60vh] max-h-[700px] bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 ease-in-out"
+      className="w-[calc(100vw-2rem)] md:max-w-[350px] lg:max-w-[400px] h-[60vh] max-h-[700px] bg-white rounded-3xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 ease-in-out"
       tabIndex={-1}
       aria-modal="true"
       role="dialog"
