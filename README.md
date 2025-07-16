@@ -1,58 +1,68 @@
 # GlowChat Monorepo
 
-GlowChat is an interactive Arabic chat interface featuring a distinctive animated glow effect, smooth Framer Motion transitions, and advanced messaging capabilities. This monorepo contains all project components and documentation needed to run, develop, and extend GlowChat.
+An interactive Arabic chat interface featuring:
 
-## Repository Overview
+- Distinctive animated glow effect
+- Smooth Framer Motion transitions
+- Contextual AI messaging with typing indicators
+- Full RTL support using Tajawal Arabic Font
+- Responsive layouts for desktop, tablet, and mobile
 
-- **company_profile/**  
-  Contains company and prospect information (see `company_profile/company_brief.md`).
-- **frontend/**  
-  Next.js chat application built with TypeScript, Tailwind CSS, Framer Motion, and shadcn/ui components.  
-  See `frontend/README.md` for detailed setup and component documentation.
+---
 
-## Key Features
+## Prerequisites
 
-- **Animated Glow Effect**  
-  Rotating conic-gradient glow (warm yellow `#fbbf24`, pink `#f472b6`, light purple `#a78bfa`) with `12px` blur and a continuous `4s` rotation cycle.
-- **Framer Motion Transitions**  
-  Smooth `0.3s` ease-in-out animations between minimized and expanded chat states.
-- **Dual-State Chat Interface**  
-  - **Minimized**: Capsule-shaped bar (280–320px width) fixed at bottom center.  
-  - **Expanded**: Full chat window with header, message history, typing indicator, and input field.  
-  - Session-persistent history (up to 50 messages, FIFO removal of oldest messages).
-- **Message System**  
-  - **Input Handling**: Send messages via Enter key or send-button click.  
-  - **Validation**: Prevents empty or whitespace-only messages and enforces a 500-character input limit.  
-  - **History Management**: FIFO queue for 50 messages.  
-  - **Simulated AI Responses**: Contextual Arabic replies generated after an exact 2-second delay.
-- **Typing Indicator**  
-  Animated three-dot bouncing indicator that appears immediately upon message submission and disappears when the AI response is displayed.
-- **Arabic RTL Support**  
-  Full right-to-left layout with **Tajawal Arabic Font** integrated across all components.
-- **Responsive Design**  
-  Optimized for desktop (1024px+), tablet (768–1023px), and mobile (<768px) devices.
-
-## Troubleshooting & Known Issues
-
-- **Media Element Errors**  
-  Console logs `The element has no supported sources` – verify that all audio/video elements have valid source URLs or fallback formats.
-- **Performance Monitoring**  
-  `[GlowEffect] FPS` logs indicate generally smooth performance (50–60 FPS), with occasional drops on lower-power devices.
-- **Input & Display**  
-  - Long messages may display truncated in the history component despite being accepted.  
-  - Ensure `maxLength={500}` is set on the input field in `MessageInput.tsx`.
+- Node.js 16.x or newer
+- npm (or yarn/pnpm)
 
 ## Getting Started
 
-```bash
-cd frontend
-npm install
-npm run dev
-```
+1. Install dependencies:
+   ```bash
+   cd frontend
+   npm install
+   ```
+2. Run the development server:
+   ```bash
+   npm run dev
+   ```
+3. Open your browser at **http://localhost:3000**
 
-Open your browser to **http://localhost:3000** (frontend runs on port **3000**).
+The frontend listens on port **3000** by default.
+
+---
+
+## Repository Structure
+
+- **company_profile/**
+  - `company_brief.md` – Prospect and company overview
+- **frontend/**
+  - Next.js + TypeScript + Tailwind CSS chat application
+  - **See** `frontend/README.md` for setup details, component reference, and feature documentation
+
+---
+
+## Key Features
+
+- **Animated Glow**: Conic-gradient glow (warm yellow `#fbbf24`, pink `#f472b6`, light purple `#a78bfa`) with 12 px blur, rotating every 4 s
+- **Framer Motion**: 0.3 s ease-in-out transitions between minimized capsule bar and expanded chat window
+- **Dual-State Chat**: Minimized capsule (280–320 px width) ↔ Expanded window (up to 400 px width) with session-persistent history (FIFO, 50 messages)
+- **AI Messaging**: Send via Enter or button; input validation (non-empty, ≤ 500 chars); simulated AI replies after exactly 2 s delay
+- **Typing Indicator**: Animated three-dot bounce during AI response delay
+- **RTL & Typography**: Right-to-left layout and Tajawal font across all UI elements
+- **Responsive Design**: Tailwind breakpoints for desktop (≥ 1024 px), tablet (768–1023 px), and mobile (< 768 px)
+
+---
+
+## Troubleshooting & Known Issues
+
+- **Media Element Errors**: Console may log `The element has no supported sources` – ensure any audio/video assets have valid URLs or fallbacks
+- **Performance Logs**: `[GlowEffect] FPS` logs appear in console (generally 50–60 FPS)
+- **Input Limit**: Ensure `maxLength={500}` is set on the input field (`MessageInput.tsx`)
+
+---
 
 ## Additional Documentation
 
-- **Company Profile**: `company_profile/company_brief.md`  
-- **Frontend Setup & Component Reference**: `frontend/README.md`
+- **Company Profile**: `company_profile/company_brief.md`
+- **Frontend Docs & Component Reference**: `frontend/README.md`
