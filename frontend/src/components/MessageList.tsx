@@ -28,7 +28,7 @@ export default function MessageList({ messages }: MessageListProps) {
   return (
     <div
       ref={listRef}
-      className="flex-grow p-4 space-y-4 overflow-y-auto custom-scrollbar"
+      className="flex-grow p-2 md:p-4 space-y-4 overflow-y-auto custom-scrollbar"
       style={{ minHeight: 0 }}
       tabIndex={0}
       aria-live="polite"
