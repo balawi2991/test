@@ -11,14 +11,17 @@ interface MessageListProps {
 /**
  * MessageList
  * Scrollable container for conversation history.
- * Automatically scrolls to bottom on new message.
+ * Automatically scrolls to bottom on new message with smooth behavior.
  */
 export default function MessageList({ messages }: MessageListProps) {
   const listRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (listRef.current) {
-      listRef.current.scrollTop = listRef.current.scrollHeight;
+      listRef.current.scrollTo({
+        top: listRef.current.scrollHeight,
+        behavior: "smooth",
+      });
     }
   }, [messages]);
 
