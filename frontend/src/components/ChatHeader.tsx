@@ -32,7 +32,7 @@ export default function ChatHeader({
       </div>
       <div className="flex items-center gap-2">
         <button
-          className="p-2 text-gray-500 hover:text-[#007BFF] hover:bg-gray-100 rounded-full transition-colors"
+          className="p-3 min-w-[44px] min-h-[44px] text-gray-500 hover:text-[#007BFF] hover:bg-gray-100 rounded-full transition-colors"
           aria-label={muted ? "تشغيل الصوت" : "إيقاف الصوت"}
           onClick={onToggleMute}
           type="button"
@@ -56,7 +56,7 @@ export default function ChatHeader({
           )}
         </button>
         <button
-          className="p-2 text-gray-500 hover:text-[#007BFF] hover:bg-gray-100 rounded-full transition-colors"
+          className="p-3 min-w-[44px] min-h-[44px] text-gray-500 hover:text-[#007BFF] hover:bg-gray-100 rounded-full transition-colors"
           aria-label="تصغير الدردشة"
           onClick={onMinimize}
           type="button"
