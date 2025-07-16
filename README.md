@@ -1,16 +1,14 @@
 # GlowChat Monorepo
 
-GlowChat is an interactive Arabic chat interface featuring a distinctive animated glow effect around the chat interface and smooth Framer Motion transitions. This monorepo contains all project components and documentation.
+GlowChat is an interactive Arabic chat interface featuring a distinctive animated glow effect, smooth Framer Motion transitions, and advanced messaging capabilities. This monorepo contains all project components and documentation needed to run, develop, and extend GlowChat.
 
-## Project Structure
+## Repository Overview
 
 - **company_profile/**  
-  Contains the company brief and prospect information.  
-  • See `company_profile/company_brief.md`
-
+  Contains company and prospect information (see `company_profile/company_brief.md`).
 - **frontend/**  
-  Next.js application built with TypeScript, Tailwind CSS, Framer Motion, and shadcn/ui components.  
-  • See `frontend/README.md`
+  Next.js chat application built with TypeScript, Tailwind CSS, Framer Motion, and shadcn/ui components.  
+  See `frontend/README.md` for detailed setup and component documentation.
 
 ## Key Features
 
@@ -19,22 +17,32 @@ GlowChat is an interactive Arabic chat interface featuring a distinctive animate
 - **Framer Motion Transitions**  
   Smooth `0.3s` ease-in-out animations between minimized and expanded chat states.
 - **Dual-State Chat Interface**  
-  Minimized capsule-shaped bar (280px–320px width) and expanded chat window with session-persistent history.
-- **Arabic RTL Support & Tajawal Font**  
-  Full right-to-left design, all text in Arabic, using the Tajawal Arabic typeface.
-- **Simulated AI Chat**  
-  Contextual AI responses with a 2s typing delay and animated three-dot typing indicator.
+  - **Minimized**: Capsule-shaped bar (280–320px width) fixed at bottom center.  
+  - **Expanded**: Full chat window with header, message history, typing indicator, and input field.  
+  - Session-persistent history (up to 50 messages, FIFO removal of oldest messages).
+- **Message System**  
+  - **Input Handling**: Send messages via Enter key or send-button click.  
+  - **Validation**: Prevents empty or whitespace-only messages and enforces a 500-character input limit.  
+  - **History Management**: FIFO queue for 50 messages.  
+  - **Simulated AI Responses**: Contextual Arabic replies generated after an exact 2-second delay.
+- **Typing Indicator**  
+  Animated three-dot bouncing indicator that appears immediately upon message submission and disappears when the AI response is displayed.
+- **Arabic RTL Support**  
+  Full right-to-left layout with **Tajawal Arabic Font** integrated across all components.
 - **Responsive Design**  
-  Optimized layouts for desktop (1024px+), tablet (768–1023px), and mobile (<768px).
+  Optimized for desktop (1024px+), tablet (768–1023px), and mobile (<768px) devices.
 
-## Technology Stack
+## Troubleshooting & Known Issues
 
-- **Frontend:** Next.js (React, TypeScript), Tailwind CSS, shadcn/ui components, Framer Motion
-- **Typography:** Tajawal Arabic Font
-- **Animation:** CSS conic-gradient & Framer Motion
-- **Ports:** Frontend runs on port **3000**
+- **Media Element Errors**  
+  Console logs `The element has no supported sources` – verify that all audio/video elements have valid source URLs or fallback formats.
+- **Performance Monitoring**  
+  `[GlowEffect] FPS` logs indicate generally smooth performance (50–60 FPS), with occasional drops on lower-power devices.
+- **Input & Display**  
+  - Long messages may display truncated in the history component despite being accepted.  
+  - Ensure `maxLength={500}` is set on the input field in `MessageInput.tsx`.
 
-## Quick Start
+## Getting Started
 
 ```bash
 cd frontend
@@ -42,9 +50,9 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the application.
+Open your browser to **http://localhost:3000** (frontend runs on port **3000**).
 
 ## Additional Documentation
 
-- **Prospect & Company Info:** `company_profile/company_brief.md`
-- **Frontend Details & Setup:** `frontend/README.md`
+- **Company Profile**: `company_profile/company_brief.md`  
+- **Frontend Setup & Component Reference**: `frontend/README.md`
